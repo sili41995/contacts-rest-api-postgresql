@@ -2,9 +2,8 @@ import express, { NextFunction, Request, Response } from 'express';
 import logger from 'morgan';
 import cors from 'cors';
 import 'dotenv/config';
-import 'reflect-metadata';
 import { IHttpError } from './types/types';
-import { authRouter } from './routes/api';
+import { authRouter, contactsRouter } from './routes/api';
 
 const app = express();
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
@@ -14,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRouter);
-// app.use('/api/events', eventsRouter);
+app.use('/api/contacts', contactsRouter);
 
 app.use((req: Request, res: Response): void => {
   res.status(404).json({ message: 'Not Found' });

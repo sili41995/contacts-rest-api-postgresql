@@ -15,6 +15,23 @@ export interface IUser {
   avatar: string;
 }
 
+export interface INewContact {
+  [key: string]: string | boolean | number | undefined | null;
+  id: number;
+  name: string;
+  phone: string;
+  email?: string;
+  role?: string;
+  description?: string;
+  tgUsername?: string;
+  favorite?: boolean;
+  avatar: string;
+}
+
+export interface IContact extends INewContact {
+  owner: number | undefined;
+}
+
 export interface IRequest extends Request {
   user?: IUser;
   file?: MulterFile;
@@ -43,6 +60,35 @@ export interface IAuthRequest extends IRequest {
   body: IUser;
 }
 
+export interface IContactsRequest extends IRequest {
+  body: INewContact;
+}
+
 export interface DecodedToken {
   id: number;
+}
+
+export interface IUpdateImageProps {
+  path: string;
+  filename: string;
+}
+
+export interface IFindFilterProps {
+  owner: number;
+  query: {
+    page?: string;
+    limit?: string;
+    favorite?: string;
+  };
+}
+
+export interface IFilter {
+  owner: number;
+  favorite?: boolean;
+}
+
+export interface IFindFilterValues {
+  skip: number;
+  take: number;
+  findFilter: IFilter;
 }

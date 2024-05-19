@@ -16,7 +16,7 @@ const authenticate = async (req: IAuthRequest, res: Response, next: NextFunction
 
   try {
     const { id } = jwt.verify(token, SECRET_KEY as Secret) as DecodedToken;
-    const user = (await prisma.user.findFirst({ where: { id }, select: { id: true, token: true } })) as IUser | null;
+    const user = (await prisma.user.findFirst({ where: { id }, select: { id: true, token: true, avatar: true, email: true, name: true } })) as IUser | null;
 
     if (!user || user.token !== token) {
       throw httpError({ status: 401 });

@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express';
 import { IContactsRequest, IUser } from '../../types/types';
 import { ctrlWrapper, getFindFilter } from '../../utils';
-import prisma from '../../server';
+import { prisma } from '../../app';
 
 const getAll = async (req: IContactsRequest, res: Response, next: NextFunction): Promise<void> => {
   const { id: owner } = req.user as IUser;

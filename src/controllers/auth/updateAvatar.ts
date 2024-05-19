@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express';
 import { IAuthRequest, IUser, MulterFile } from '../../types/types';
 import { ctrlWrapper, updateImage, getImageFilename, httpError } from '../../utils';
-import prisma from 'server';
+import { prisma } from '../../app';
 
 const updateAvatar = async (req: IAuthRequest, res: Response, next: NextFunction): Promise<void> => {
   const { avatar, id } = req.user as IUser;

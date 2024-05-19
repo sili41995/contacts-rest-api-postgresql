@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express';
 import { IContact, IContactsRequest, IUser } from '../../types/types';
 import { ctrlWrapper, uploadImage } from '../../utils';
-import prisma from '../../server';
+import { prisma } from '../../app';
 
 const add = async (req: IContactsRequest, res: Response, next: NextFunction): Promise<void> => {
   if (req.file) {

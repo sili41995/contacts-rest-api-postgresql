@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import { NextFunction, Response } from 'express';
 import { IAuthRequest } from '../../types/types';
 import { ctrlWrapper, httpError, uploadImage } from '../../utils';
-import prisma from '../../server';
+import { prisma } from '../../app';
 
 const signUp = async (req: IAuthRequest, res: Response, next: NextFunction): Promise<void> => {
   if (req.file) {

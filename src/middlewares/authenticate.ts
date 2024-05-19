@@ -2,7 +2,7 @@ import jwt, { Secret } from 'jsonwebtoken';
 import { NextFunction, Response } from 'express';
 import { DecodedToken, IAuthRequest, IRequest, IUser } from '../types/types';
 import { ctrlWrapper, httpError } from '../utils';
-import prisma from '../server';
+import { prisma } from '../app';
 
 const { SECRET_KEY } = process.env;
 

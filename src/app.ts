@@ -5,6 +5,9 @@ import 'dotenv/config';
 import { IHttpError } from './types/types';
 import { authRouter, contactsRouter } from './routes/api';
 import { PrismaClient } from '@prisma/client';
+import { Pool } from 'pg';
+import { PrismaPg } from '@prisma/adapter-pg';
+import 'reflect-metadata';
 
 const app = express();
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
@@ -25,5 +28,7 @@ app.use((err: IHttpError, req: Request, res: Response, next: NextFunction): void
 });
 
 export const prisma = new PrismaClient();
+const connectionString = `${process.env.DATABASE_URL}`;
+const pool = new Pool({ connectionString });
 
 export default app;
